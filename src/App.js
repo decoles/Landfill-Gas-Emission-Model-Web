@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+
+import Characterisitics from "./Component/Inputs/characterisitcs";
+import Parameters from "./Component/Inputs/parameters";
+import Gasses from "./Component/Inputs/gasses";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <p>Landfill Characterisitics</p>
+        <Characterisitics />
+        <br/>
+       <p>Model Parameters</p>
+        <Parameters />
+        <br/>
+        <p>Select Gass Pollutants</p>
+        
+        <Gasses />
     </div>
   );
 }
