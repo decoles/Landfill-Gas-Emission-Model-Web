@@ -1,4 +1,5 @@
 import React from "react";
+import WasteAcceptance from "./wasteAcceptance";
 //Material UI
 import {
   InputLabel,
@@ -20,6 +21,7 @@ function Characterisitics() {
     const regex = /^[0-9\b]+$/;
     if (event.target.value === "" || regex.test(event.target.value)) {
       setOpen(event.target.value);
+      console.log(event.target.value.length);
     }
   };
 
@@ -27,6 +29,14 @@ function Characterisitics() {
     const regex = /^[0-9\b]+$/;
     if (event.target.value === "" || regex.test(event.target.value)) {
       setClose(event.target.value);
+      if (event.target.value.length === 4 && open.length === 4) {
+
+        // Step 1: Send data to parent component
+        props.onDataUpdate({
+          open: open,
+          close: close,
+        });
+      }
     }
   };
 
