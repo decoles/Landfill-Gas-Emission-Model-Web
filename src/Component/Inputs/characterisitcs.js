@@ -1,5 +1,5 @@
 import React from "react";
-import WasteAcceptance from "./wasteAcceptance";
+
 //Material UI
 import {
   InputLabel,
@@ -12,16 +12,17 @@ import {
   Radio,
   TextField,
 } from "@mui/material";
+import { AppContext } from "../../AppContext";
 
 function Characterisitics() {
   const [open, setOpen] = React.useState("");
   const [close, setClose] = React.useState("");
+  const { characteristicsData, setCharacteristicsData } = React.useContext(AppContext);
 
   const handleChangeOpen = (event) => {
     const regex = /^[0-9\b]+$/;
     if (event.target.value === "" || regex.test(event.target.value)) {
       setOpen(event.target.value);
-      console.log(event.target.value.length);
     }
   };
 
@@ -29,13 +30,13 @@ function Characterisitics() {
     const regex = /^[0-9\b]+$/;
     if (event.target.value === "" || regex.test(event.target.value)) {
       setClose(event.target.value);
-      if (event.target.value.length === 4 && open.length === 4) {
-
-        // Step 1: Send data to parent component
-        props.onDataUpdate({
-          open: open,
-          close: close,
-        });
+      if (event.target.value.length === 4 && open.length === 4 && open < event.target.value) {
+        //console.log("open year: " + open + " close year: " + event.target.value);
+        setCharacteristicsData((prev) => ({
+          ...prev,
+          openYear: open,
+          closeYear: event.target.value,
+          }));
       }
     }
   };

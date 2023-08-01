@@ -1,4 +1,5 @@
 import React from "react";
+import { AppContext } from "../../AppContext";
 //Material UI
 import {
   InputLabel,
@@ -12,6 +13,14 @@ import {
   TextField,
 } from "@mui/material";
 function AcceptanceRates() {
+  const { characteristicsData} = React.useContext(AppContext);
+  const [inputUnits, setInputUnits] = React.useState(0);
+
+  const calculatedCalculatedUnits = () => {
+    const {openYear, closeYear} = characteristicsData;
+    console.log("open year: " + openYear + " close year: " + closeYear);
+    return (closeYear - openYear);
+  }
   return (
     <div>
         <FormControl fullWidth>
@@ -28,6 +37,7 @@ function AcceptanceRates() {
             <MenuItem value={1}>short tons/year</MenuItem>
         </Select>
         </FormControl>
+        <p>Calculated Units: {calculatedCalculatedUnits()}</p>
     </div>
   );
 }

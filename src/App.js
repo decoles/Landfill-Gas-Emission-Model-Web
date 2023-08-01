@@ -1,23 +1,17 @@
 import React from 'react';
-import { useState } from "react";
+
 import Characterisitics from "./Component/Inputs/characterisitcs";
 import Parameters from "./Component/Inputs/parameters";
 import Gasses from "./Component/Inputs/gasses";
 import AcceptanceRates from "./Component/Inputs/wasteAcceptance";
+import { AppProvider } from './AppContext';
 
 function App() {
-  const [characteristicsData, setCharacteristicsData] = useState({}); // To store the data from Characterisitics component
-
-  // Step 2: Callback function to receive data from Characterisitics component
-  const handleCharacteristicsDataUpdate = (data) => {
-    setCharacteristicsData(data);
-  };
-
-
   return (
+    <AppProvider>
     <div className="App">
         <p>Landfill Characterisitics</p>
-        <Characterisitics onDataUpdate={handleCharacteristicsDataUpdate}/>
+        <Characterisitics />
         <br/>
        <p>Model Parameters</p>
         <Parameters />
@@ -28,6 +22,7 @@ function App() {
         <p>Enter Waste Acceptance Rates</p>
         <AcceptanceRates />
     </div>
+    </AppProvider>
   );
 }
 
