@@ -12,13 +12,14 @@ import {
   Radio,
   TextField,
 } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import DataGrid from "react-data-grid";
+import 'react-data-grid/lib/styles.css';
+
 
 function AcceptanceRates() {
   const { characteristicsData } = React.useContext(AppContext);
   const [inputUnits, setInputUnits] = React.useState(0);
   const [generatedRows, setGeneratedRows] = useState([]);
-
 
   const YearCalculation = () => {
     const { openYear, closeYear } = characteristicsData;
@@ -27,12 +28,13 @@ function AcceptanceRates() {
   };
 
   const columns = [
-    { field: "year", headerName: "Year", width: 120 },
-    { field: "inputUnits", headerName: "Input Units (Mg/Year)", width: 150 },
-    { field: "calculatedUnits", headerName: "Calculated Units (short tons/year)", width: 180 },
+    { key: "year", name: "Year"},
+    { key: "inputUnits", name: "Input Units (Mg/Year)"},
+    {
+      key: "calculatedUnits",
+      name: "Calculated Units (short tons/year)"
+    },
   ];
-
-
 
   useEffect(() => {
     const newRows = [];
@@ -47,9 +49,6 @@ function AcceptanceRates() {
     setGeneratedRows(newRows);
   }, [characteristicsData.openYear, characteristicsData.closeYear]);
 
-
-
-  
   return (
     <div>
       <FormControl fullWidth>
@@ -68,7 +67,7 @@ function AcceptanceRates() {
       </FormControl>
       <p>Calculated Units: {YearCalculation()}</p>
 
-      <DataGrid rows={generatedRows} columns={columns} pageSize={5} />
+      <DataGrid columns={columns} rows={generatedRows}/>
     </div>
   );
 }
