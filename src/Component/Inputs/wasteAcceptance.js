@@ -6,11 +6,6 @@ import {
   Select,
   MenuItem,
   FormControl,
-  FormLabel,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  TextField,
 } from "@mui/material";
 import DataGrid from "react-data-grid";
 import 'react-data-grid/lib/styles.css';
@@ -20,6 +15,8 @@ function AcceptanceRates() {
   const { characteristicsData } = React.useContext(AppContext);
   const [inputUnits, setInputUnits] = React.useState(0);
   const [generatedRows, setGeneratedRows] = useState([]);
+  const [unitType, setUnitType] = useState("Mg/year");
+  const [unitType2, setUnitType2] = useState("short tons/year");
 
   const YearCalculation = () => {
     const { openYear, closeYear } = characteristicsData;
@@ -27,15 +24,21 @@ function AcceptanceRates() {
     return closeYear - openYear;
   };
 
+  //Dictates what happens when the drop down menu is changed/ swaps the units
+  const dropDownChange = (event) => {
+    const selectedValue = event.target.value;
+    setUnitType(selectedValue === 0 ? "Mg/year" : "short tons/year");
+    setUnitType2(selectedValue === 1 ? "Mg/year": "short tons/year");
+  };
+
   const columns = [
     { key: "year", name: "Year"},
-    { key: "inputUnits", name: "Input Units (Mg/Year)"},
+    { key: "inputUnits", name: `Input Units ( ${unitType} )`},
     {
       key: "calculatedUnits",
-      name: "Calculated Units (short tons/year)"
+      name: `Calculated Units ( ${unitType2} )`
     },
   ];
-
   useEffect(() => {
     const newRows = [];
     for (let i = 0; i <= YearCalculation(); i++) {
@@ -49,6 +52,8 @@ function AcceptanceRates() {
     setGeneratedRows(newRows);
   }, [characteristicsData.openYear, characteristicsData.closeYear]);
 
+  console.log(YearCalculation());
+
   return (
     <div>
       <FormControl fullWidth>
@@ -59,14 +64,12 @@ function AcceptanceRates() {
           //value= '' //{age}
           defaultValue={0}
           label="Input Units:"
-          //onChange={}
+          onChange={dropDownChange}
         >
           <MenuItem value={0}>Mg/year</MenuItem>
           <MenuItem value={1}>short tons/year</MenuItem>
         </Select>
       </FormControl>
-      <p>Calculated Units: {YearCalculation()}</p>
-
       <DataGrid columns={columns} rows={generatedRows}/>
     </div>
   );

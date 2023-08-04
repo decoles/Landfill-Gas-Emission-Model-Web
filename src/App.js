@@ -6,6 +6,8 @@ import Gasses from "./Component/Inputs/gasses";
 import AcceptanceRates from "./Component/Inputs/wasteAcceptance";
 import { AppProvider } from './AppContext';
 
+import Button from '@mui/material/Button';
+
 function App() {
   return (
     <AppProvider>
@@ -21,6 +23,7 @@ function App() {
         <br/>
         <p>Enter Waste Acceptance Rates</p>
         <AcceptanceRates />
+        <Button variant="contained">Submit</Button>
     </div>
     </AppProvider>
   );
