@@ -18,7 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.urls import re_path as url
 from LandfillBackend.views import *
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'react', ReactView, 'react')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path ('', ReactView.as_view(), name='anything'),
+    path('api/', include(router.urls)),
 ]
