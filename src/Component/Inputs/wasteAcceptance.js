@@ -32,16 +32,14 @@ function AcceptanceRates() {
   };
 
   const columns = [
-    { key: "year", name: "Year"},
-    { key: "inputUnits", name: `Input Units ( ${unitType} )`},
-    {
-      key: "calculatedUnits",
-      name: `Calculated Units ( ${unitType2} )`
-    },
+    { key: "year", name: "Year", editable: false},
+    { key: "inputUnits", name: `Input Units ( ${unitType} )`, editable: true},
+    { key: "calculatedUnits", name: `Calculated Units ( ${unitType2} )`, editable: false},
   ];
+
   useEffect(() => {
     const newRows = [];
-    for (let i = 0; i <= YearCalculation(); i++) {
+    for (let i = 0; i <= parseInt(YearCalculation(), 10); i++) {
       newRows.push({
         id: i,
         year: parseInt(characteristicsData.openYear, 10) + parseInt(i, 10),
@@ -50,9 +48,32 @@ function AcceptanceRates() {
       });
     }
     setGeneratedRows(newRows);
+    
   }, [characteristicsData.openYear, characteristicsData.closeYear]);
 
   console.log(YearCalculation());
+
+  console.log(generatedRows);
+
+  const onGridRowsUpdated = ({ fromRow, toRow, updated }) => {
+    setGeneratedRows((prevRows) => {
+      const updatedRows = [...prevRows];
+      for (let i = fromRow; i <= toRow; i++) {
+        updatedRows[i] = { ...updatedRows[i], ...updated };
+      }
+      return updatedRows;
+    });
+  };
+
+  const rows = [
+    { id: 0, year: 2021, inputUnits: 0, calculatedUnits: 0 },
+    { id: 1, year: 2022, inputUnits: 0, calculatedUnits: 0 },
+    { id: 2, year: 2023, inputUnits: 0, calculatedUnits: 0 },
+    { id: 3, year: 2024, inputUnits: 0, calculatedUnits: 0 },
+    { id: 4, year: 2025, inputUnits: 0, calculatedUnits: 0 },
+    { id: 5, year: 2026, inputUnits: 0, calculatedUnits: 0 },
+
+  ];
 
   return (
     <div>
@@ -70,7 +91,12 @@ function AcceptanceRates() {
           <MenuItem value={1}>short tons/year</MenuItem>
         </Select>
       </FormControl>
-      <DataGrid columns={columns} rows={generatedRows}/>
+      <DataGrid 
+        columns={columns} 
+        rows={generatedRows} 
+        style={{ height: "90dvh", border: '2px solid red' }} 
+        onGridRowsUpdated={onGridRowsUpdated}/>
+        enableCellSelect={true}
     </div>
   );
 }

@@ -8,23 +8,33 @@ import { AppProvider } from '../AppContext';
 
 
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 
 function UserInput() {
   return (
     <AppProvider>
-    <div className="App">
-        <p>Landfill Characterisitics</p>
-        <Characterisitics />
-        <br/>
-       <p>Model Parameters</p>
-        <Parameters />
-        <br/>
-        <p>Select Gass Pollutants</p>
-        <Gasses />
-        <br/>
-        <p>Enter Waste Acceptance Rates</p>
-        <AcceptanceRates />
-        <Button variant="contained">Submit</Button>
+    <div className="UserInput">
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <p>Landfill Characterisitics</p>
+          <Characterisitics />
+          <br/>
+          <p>Model Parameters</p>
+          <Parameters />
+          <br/>
+          <p>Select Gass Pollutants</p>
+          <Gasses />
+          <br/>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <p>Enter Waste Acceptance Rates</p>
+          <AcceptanceRates />
+          <Button variant="contained">Submit</Button>
+        </Grid>
+
+      </Grid>
+
+
     </div>
     </AppProvider>
   );
