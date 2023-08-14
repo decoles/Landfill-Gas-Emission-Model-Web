@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import SignIn from './Pages/SignIn';
-import UserInput from './Pages/UserInput';
+import SignIn from './Pages/SignInPage';
+import UserInput from './Pages/UserInputPage';
+import InputReviewPage from './Pages/InputReviewPage';
 
 
 import {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <SignIn />,
   },
+  {
+    path: "/review",
+    element: <InputReviewPage />,
+  }
   
 ]);
 

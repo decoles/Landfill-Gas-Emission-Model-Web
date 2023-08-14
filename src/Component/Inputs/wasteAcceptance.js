@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AppContext } from "../../AppContext";
+import { useNavigate } from 'react-router-dom'; // Assuming you are using React Router for navigation
+
 //Material UI
 import {
   InputLabel,
@@ -12,6 +14,7 @@ import 'react-data-grid/lib/styles.css';
 
 
 function AcceptanceRates() {
+  const history = useNavigate();
   const { characteristicsData } = React.useContext(AppContext);
   const [inputUnits, setInputUnits] = React.useState(0);
   const [generatedRows, setGeneratedRows] = useState([]);
@@ -75,6 +78,22 @@ function AcceptanceRates() {
 
   ];
 
+  const handleSubmit = () => {
+    // Collect the necessary data to be passed
+    const dataToPass = {
+      characteristicsData: generatedRows,
+      unitType: unitType,
+      unitType2: unitType2,
+      // ... add more data as needed
+    };
+
+    // Navigate to InputReview with the data as props
+    history.push({
+      pathname: '/input-review',
+      state: { dataToPass },
+    });
+  };
+
   return (
     <div>
       <FormControl fullWidth>
@@ -82,7 +101,7 @@ function AcceptanceRates() {
         <Select
           labelId="demo-sidbmple-select-label"
           id="demo-simple-select"
-          //value= '' //{age}
+          //value= '' //{age} 
           defaultValue={0}
           label="Input Units:"
           onChange={dropDownChange}
@@ -95,8 +114,10 @@ function AcceptanceRates() {
         columns={columns} 
         rows={generatedRows} 
         style={{ height: "90dvh", border: '2px solid red' }} 
-        onGridRowsUpdated={onGridRowsUpdated}/>
+        onGridRowsUpdated={onGridRowsUpdated}
         enableCellSelect={true}
+        />
+        
     </div>
   );
 }
