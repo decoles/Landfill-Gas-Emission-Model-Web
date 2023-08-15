@@ -4,9 +4,12 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [characteristicsData, setCharacteristicsData] = useState({});
+  const [parametersData, setParametersData] = useState({});
+  const [gassesData, setGassesData] = useState({});
 
   return (
-    <AppContext.Provider value={{ characteristicsData, setCharacteristicsData }}>
+    <AppContext.Provider value={{ characteristicsData, setCharacteristicsData, parametersData, setParametersData, 
+    gassesData, setGassesData }}>
       {children}
     </AppContext.Provider>
   );

@@ -1,5 +1,7 @@
 import React from "react";
 import gasData from "./data/gasData";
+import { AppContext } from "../../AppContext";
+
 //Material UI
 import {
   InputLabel,
@@ -13,6 +15,23 @@ import {
   TextField,
 } from "@mui/material";
 function Gasses() {
+
+
+  const { gassesData, setGassesData } = React.useContext(AppContext);
+
+  const handleChange = (event) => {
+    setGassesData({
+      ...event,
+      gas1: 1,
+      gas2: 4,
+      gas3: 0,
+      gas4: 0,
+    });
+    console.log(gassesData);
+  };
+
+
+  
   return (
     <div>
       <FormControl fullWidth>
@@ -25,7 +44,7 @@ function Gasses() {
           //value= '' //{age}
           defaultValue={0}
           label="Gas / Polutant #1"
-          //onChange={}
+          onChange={handleChange}
         >
           {gasData.map((gas, index) => (
             <MenuItem key={index} value={gas.concentration}>

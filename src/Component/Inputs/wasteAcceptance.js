@@ -16,7 +16,7 @@ import 'react-data-grid/lib/styles.css';
 function AcceptanceRates() {
   const navigate = useNavigate();
 
-  const { characteristicsData } = React.useContext(AppContext);
+  const { characteristicsData, parametersData, gassesData, } = React.useContext(AppContext);
   const [inputUnits, setInputUnits] = React.useState(0);
   const [generatedRows, setGeneratedRows] = useState([]);
   const [unitType, setUnitType] = useState("Mg/year");
@@ -31,9 +31,14 @@ function AcceptanceRates() {
   const routeChange = () => {
     let path = `/review`;
     const dataToPass = {
-      characteristicsData: generatedRows,
-      unitType: unitType,
-      unitType2: unitType2,
+      dataRows: generatedRows,
+      dataColumnHeaders: columns,
+      openYear: characteristicsData.openYear,
+      closeYear: characteristicsData.closeYear,
+      gas1: gassesData.gas1,
+      gas2: gassesData.gas2,
+      gas3: gassesData.gas3,
+      gas4: gassesData.gas4,
       // ... add more data as needed
     };
     navigate(path, { state: dataToPass });

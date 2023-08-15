@@ -1,7 +1,16 @@
 import React from "react";
+import { AppContext } from "../../AppContext";
+
+
 //Material UI
 import { InputLabel, Select, MenuItem, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, TextField } from "@mui/material";
 function Parameters() {
+
+
+
+    const { parametersData, setParametersData } = React.useContext(AppContext);
+
+
   return <div>
     <FormControl fullWidth>
     <InputLabel id="demo-sidbmple-select-label">Methane Generation Rate, k(year^-1)</InputLabel>

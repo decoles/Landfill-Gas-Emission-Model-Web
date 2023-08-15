@@ -1,17 +1,40 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom'; // Assuming you are using React Router for navigation
-
+import DataGrid from "react-data-grid";
+import 'react-data-grid/lib/styles.css';
 
 
 function InputReview() {
 
   const location = useLocation();
-  console.log(location.state);
-
   const dataToPass = location.state;
 
-  let LandfillOpenYear = 0;
-  let LandfillCloseYear = 0;
+  
+
+  const {
+    dataRows,
+    dataColumnHeaders,
+    openYear,
+    closeYear,
+    // gas1,
+    // gas2,
+    // gas3,
+    // gas4,
+
+    // ... other properties
+  } = dataToPass;
+
+  // const {
+  //   openYear,
+  //   closeYear,
+  //   // ... other properties from characteristicsData
+  // } = characteristicsData;
+
+  console.log("characteristicsData", dataToPass);
+
+
+  let LandfillOpenYear = openYear;
+  let LandfillCloseYear = closeYear;
   let CalcClouseYear = false;
   let wasteDesignCapcity = "";
   //Model Parameters
@@ -44,6 +67,11 @@ function InputReview() {
           <h3>Gas 2: {gas2}</h3>
           <h3>Gas 3: {gas3}</h3>
           <h3>Gas 4: {gas4}</h3>
+        {/* <DataGrid>      <DataGrid 
+        columns={columns} 
+        rows={generatedRows} 
+        style={{ height: "90dvh", border: '2px solid red' }} 
+        /></DataGrid> */}
     </div>
   );
 }

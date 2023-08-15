@@ -29,7 +29,6 @@ function UserInput() {
         <Grid item xs={12} sm={6}>
           <p>Enter Waste Acceptance Rates</p>
           <AcceptanceRates />
-          <Button variant="contained">Submit</Button>
         </Grid>
 
       </Grid>
