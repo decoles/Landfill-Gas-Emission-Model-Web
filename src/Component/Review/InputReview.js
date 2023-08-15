@@ -4,9 +4,6 @@ import { useLocation } from 'react-router-dom'; // Assuming you are using React 
 
 
 function InputReview() {
-  const location = useLocation();
-  const { dataToPass } = location.state;
-
 
   let LandfillOpenYear = 0;
   let LandfillCloseYear = 0;
