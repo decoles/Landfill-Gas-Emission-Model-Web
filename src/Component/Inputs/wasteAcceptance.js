@@ -14,7 +14,8 @@ import 'react-data-grid/lib/styles.css';
 
 
 function AcceptanceRates() {
-  const history = useNavigate();
+  const navigate = useNavigate();
+
   const { characteristicsData } = React.useContext(AppContext);
   const [inputUnits, setInputUnits] = React.useState(0);
   const [generatedRows, setGeneratedRows] = useState([]);
@@ -27,6 +28,17 @@ function AcceptanceRates() {
     return closeYear - openYear;
   };
 
+  const routeChange = () => {
+    let path = `/review`;
+    const dataToPass = {
+      characteristicsData: generatedRows,
+      unitType: unitType,
+      unitType2: unitType2,
+      // ... add more data as needed
+    };
+    navigate(path, { state: dataToPass });
+
+  };
   //Dictates what happens when the drop down menu is changed/ swaps the units
   const dropDownChange = (event) => {
     const selectedValue = event.target.value;
@@ -54,10 +66,6 @@ function AcceptanceRates() {
     
   }, [characteristicsData.openYear, characteristicsData.closeYear]);
 
-  console.log(YearCalculation());
-
-  console.log(generatedRows);
-
   const onGridRowsUpdated = ({ fromRow, toRow, updated }) => {
     setGeneratedRows((prevRows) => {
       const updatedRows = [...prevRows];
@@ -65,32 +73,6 @@ function AcceptanceRates() {
         updatedRows[i] = { ...updatedRows[i], ...updated };
       }
       return updatedRows;
-    });
-  };
-
-  const rows = [
-    { id: 0, year: 2021, inputUnits: 0, calculatedUnits: 0 },
-    { id: 1, year: 2022, inputUnits: 0, calculatedUnits: 0 },
-    { id: 2, year: 2023, inputUnits: 0, calculatedUnits: 0 },
-    { id: 3, year: 2024, inputUnits: 0, calculatedUnits: 0 },
-    { id: 4, year: 2025, inputUnits: 0, calculatedUnits: 0 },
-    { id: 5, year: 2026, inputUnits: 0, calculatedUnits: 0 },
-
-  ];
-
-  const handleSubmit = () => {
-    // Collect the necessary data to be passed
-    const dataToPass = {
-      characteristicsData: generatedRows,
-      unitType: unitType,
-      unitType2: unitType2,
-      // ... add more data as needed
-    };
-
-    // Navigate to InputReview with the data as props
-    history.push({
-      pathname: '/input-review',
-      state: { dataToPass },
     });
   };
 
@@ -117,6 +99,7 @@ function AcceptanceRates() {
         onGridRowsUpdated={onGridRowsUpdated}
         enableCellSelect={true}
         />
+        <button onClick={routeChange}>Go to Input Review</button>
         
     </div>
   );
