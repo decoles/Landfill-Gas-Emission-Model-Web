@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { AppContext } from "../../AppContext";
 import { useNavigate } from 'react-router-dom'; // Assuming you are using React Router for navigation
 
@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import DataGrid from "react-data-grid";
 import 'react-data-grid/lib/styles.css';
+import { textEditor } from "react-data-grid";
 
 
 function AcceptanceRates() {
@@ -27,6 +28,9 @@ function AcceptanceRates() {
     console.log("open year: " + openYear + " close year: " + closeYear);
     return closeYear - openYear;
   };
+
+  const dataGridRef = useRef(null);
+  
 
   const routeChange = () => {
     let path = `/review`;
@@ -53,7 +57,7 @@ function AcceptanceRates() {
 
   const columns = [
     { key: "year", name: "Year", editable: false},
-    { key: "inputUnits", name: `Input Units ( ${unitType} )`, editable: true},
+    { key: "inputUnits", name: `Input Units ( ${unitType} )`, renderEditCell: textEditor},
     { key: "calculatedUnits", name: `Calculated Units ( ${unitType2} )`, editable: false},
   ];
 
@@ -97,13 +101,16 @@ function AcceptanceRates() {
           <MenuItem value={1}>short tons/year</MenuItem>
         </Select>
       </FormControl>
-      <DataGrid 
-        columns={columns} 
-        rows={generatedRows} 
-        style={{ height: "90dvh", border: '2px solid red' }} 
-        onGridRowsUpdated={onGridRowsUpdated}
-        enableCellSelect={true}
-        />
+      <div style={{maxHeight: "100%"}}> 
+        <DataGrid 
+          columns={columns} 
+          rows={generatedRows} 
+          style={{ width: "100%", border: '2px solid red' }} 
+          onGridRowsUpdated={onGridRowsUpdated}
+          enableCellSelect={true}
+          />
+      </div>
+
         <button onClick={routeChange}>Go to Input Review</button>
         
     </div>
