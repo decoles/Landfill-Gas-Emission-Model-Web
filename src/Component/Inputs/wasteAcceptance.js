@@ -36,7 +36,7 @@ function AcceptanceRates() {
     let path = `/review`;
     const dataToPass = {
       dataRows: generatedRows,
-      dataColumnHeaders: columns,
+      dataColumnHeaders: columnsPassToReview,
       openYear: characteristicsData.openYear,
       closeYear: characteristicsData.closeYear,
       gas1: gassesData.gas1,
@@ -61,6 +61,13 @@ function AcceptanceRates() {
     { key: "calculatedUnits", name: `Calculated Units ( ${unitType2} )`, editable: false},
   ];
 
+  //Columns for the review page, otherwise columns breaks because of renderEditCell
+  const columnsPassToReview = [
+    { key: "year", name: "Year"},
+    { key: "inputUnits", name: `Input Units ( ${unitType} )`},
+    { key: "calculatedUnits", name: `Calculated Units ( ${unitType2} )`},
+  ];
+
   useEffect(() => {
     const newRows = [];
     for (let i = 0; i <= parseInt(YearCalculation(), 10); i++) {
@@ -81,6 +88,7 @@ function AcceptanceRates() {
       for (let i = fromRow; i <= toRow; i++) {
         updatedRows[i] = { ...updatedRows[i], ...updated };
       }
+      console.log(updatedRows);
       return updatedRows;
     });
   };
@@ -107,7 +115,8 @@ function AcceptanceRates() {
           rows={generatedRows} 
           style={{ width: "100%", border: '2px solid red' }} 
           onGridRowsUpdated={onGridRowsUpdated}
-          enableCellSelect={true}
+          // onSelectedRowsChange={setSelectedRows}
+          enableCellSelect={false}
           />
       </div>
 
