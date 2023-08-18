@@ -39,6 +39,8 @@ function AcceptanceRates() {
       dataColumnHeaders: columnsPassToReview,
       openYear: characteristicsData.openYear,
       closeYear: characteristicsData.closeYear,
+      CalClosureYear: characteristicsData.ModelCalculateClosureYear,
+      WasteDesignCapacity: characteristicsData.WasteDesignCapacity,
       gas1: gassesData.gas1,
       gas2: gassesData.gas2,
       gas3: gassesData.gas3,
@@ -55,6 +57,7 @@ function AcceptanceRates() {
     setUnitType2(selectedValue === 1 ? "Mg/year": "short tons/year");
   };
 
+  //Just for displaying on input page
   const columns = [
     { key: "year", name: "Year", editable: false},
     { key: "inputUnits", name: `Input Units ( ${unitType} )`, renderEditCell: textEditor},

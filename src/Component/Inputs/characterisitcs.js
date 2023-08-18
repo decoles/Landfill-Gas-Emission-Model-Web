@@ -17,6 +17,8 @@ import { AppContext } from "../../AppContext";
 function Characterisitics() {
   const [open, setOpen] = React.useState("");
   const [close, setClose] = React.useState("");
+  const [calculateClosureBool, setCalculateClosureBool] = React.useState("No"); // State for radio button
+  const [wasteCapacity, setWasteCapacity] = React.useState(0); // State for Waste Design Capacity
   const { characteristicsData, setCharacteristicsData } = React.useContext(AppContext);
 
   const handleChangeOpen = (event) => {
@@ -38,9 +40,24 @@ function Characterisitics() {
           ...prev,
           openYear: open,
           closeYear: event.target.value,
+          ModelCalculateClosureYear: calculateClosureBool,
+          WasteDesignCapacity: wasteCapacity,
+
+
           }));
       }
     }
+  };
+
+  //radio button
+  const handleCalculateClosureBoolChange = (event) => {
+    setCalculateClosureBool(event.target.value);
+    console.log("calculateClosureBool: " + event.target.value);
+  };
+
+  const handleWasteCapacityChange = (event) => {
+    setWasteCapacity(event.target.value);
+    console.log("wasteCapacity: " + event.target.value);
   };
 
   return (
@@ -74,6 +91,8 @@ function Characterisitics() {
           aria-labelledby="demo-radio-buttons-group-label"
           defaultValue="No"
           name="radio-buttons-group"
+          value={calculateClosureBool}
+          onChange={handleCalculateClosureBoolChange}
         >
           <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
           <FormControlLabel value="No" control={<Radio />} label="No" />
@@ -89,10 +108,10 @@ function Characterisitics() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          //value={age}
+          value={wasteCapacity}
           label="Waste Design Capacity"
           defaultValue={0}
-          //onChange={handleChange}
+          onChange={handleWasteCapacityChange}
         >
           <MenuItem value={0}>megagrams</MenuItem>
           <MenuItem value={1}>short tons</MenuItem>
