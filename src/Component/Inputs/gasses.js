@@ -16,38 +16,76 @@ import {
 } from "@mui/material";
 function Gasses() {
 
-
+  const [gas1, setGas1] = React.useState("Total landfill gas");
+  const [gas2, setGas2] = React.useState("Methane");
+  const [gas3, setGas3] = React.useState("Carbon dioxide");
+  const [gas4, setGas4] = React.useState("NMOC");
   const { gassesData, setGassesData } = React.useContext(AppContext);
+
 
   const handleChange = (event) => {
     setGassesData({
       ...event,
-      gas1: 1,
-      gas2: 4,
-      gas3: 0,
-      gas4: 0,
+      gas1: gas1,
+      gas2: gas2,
+      gas3: gas3,
+      gas4: gas4,
     });
     console.log(gassesData);
   };
 
+  const handleGas1Change = (event) => {
+    setGas1(event.target.value);
+    setGassesData({
+      ...gassesData,
+      gas1: event.target.value,
+    });
+    handleChange(event);
+  };
 
+  const handleGas2Change = (event) => {
+    setGas2(event.target.value);
+    setGassesData({
+      ...gassesData,
+      gas2: event.target.value,
+    });
+    handleChange(event);
+
+  };
+
+  const handleGas3Change = (event) => {
+    setGas3(event.target.value);
+    setGassesData({
+      ...gassesData,
+      gas3: event.target.value,
+    });
+    handleChange(event);
+
+  };
+
+  const handleGas4Change = (event) => {
+    setGas4(event.target.value);
+    setGassesData({
+      ...gassesData,
+      gas4: event.target.value,
+    });
+    handleChange(event);
+
+  };
   
   return (
     <div>
       <FormControl fullWidth>
-        <InputLabel id="demo-sidbmple-select-label">
+        <InputLabel>
           Gas / Polutant #1
         </InputLabel>
         <Select
-          labelId="demo-sidbmple-select-label"
-          id="demo-simple-select"
-          //value= '' //{age}
-          defaultValue={0}
+          value= {gas1} 
           label="Gas / Polutant #1"
-          onChange={handleChange}
+          onChange={handleGas1Change}
         >
           {gasData.map((gas, index) => (
-            <MenuItem key={index} value={gas.concentration}>
+            <MenuItem key={index} value={gas.name}>
               {gas.name}
             </MenuItem>
           ))}
@@ -57,20 +95,16 @@ function Gasses() {
       <br />
 
       <FormControl fullWidth>
-        <InputLabel id="demo-sijjmple-select-label">
+        <InputLabel>
           Gas / Polutant #2
         </InputLabel>
         <Select
-          labelId="demo-sijjmple-select-label"
-          id="demo-simple-select"
-          //value= '' //{age}
+          value = {gas2}
           label="Gas / Polutant #2"
-          defaultValue={0}
-
-          //onChange={}
+          onChange={handleGas2Change}
         >
           {gasData.map((gas, index) => (
-            <MenuItem key={index} value={gas.concentration}>
+            <MenuItem key={index} value={gas.name}>
               {gas.name}
             </MenuItem>
           ))}
@@ -80,19 +114,16 @@ function Gasses() {
       <br />
 
       <FormControl fullWidth>
-        <InputLabel id="demo-siggmple-select-label">
+        <InputLabel>
           Gas / Polutant #3
         </InputLabel>
         <Select
-          labelId="demo-siggmple-select-label"
-          id="demo-simple-select"
-          //value= '' //{age}
+          value={gas3}
           label="Gas / Polutant #3"
-          defaultValue={4000}
-          //onChange={}
+          onChange={handleGas3Change}
         >
           {gasData.map((gas, index) => (
-            <MenuItem key={index} value={gas.concentration}>
+            <MenuItem key={index} value={gas.name}>
               {gas.name}
             </MenuItem>
           ))}
@@ -102,18 +133,17 @@ function Gasses() {
       <br />
 
       <FormControl fullWidth>
-        <InputLabel id="demo-simjjple-select-label">
+        <InputLabel>
           Gas / Polutant #4
         </InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          //value= '' //{age}
+          value={gas4}
           label="Gas / Polutant #4"
-          defaultValue={0}
+          defaultValue="Total landfill gas"
+          onChange={handleGas4Change}
         >
           {gasData.map((gas, index) => (
-            <MenuItem key={index} value={gas.concentration}>
+            <MenuItem key={index} value={gas.name}>
               {gas.name}
             </MenuItem>
           ))}
