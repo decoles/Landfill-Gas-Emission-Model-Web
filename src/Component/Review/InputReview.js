@@ -35,7 +35,7 @@ function InputReview() {
 
     // ... other properties
   } = dataToPass;
-
+  console.log("dataToPass", dataToPass);
 
 
   return (
@@ -47,10 +47,10 @@ function InputReview() {
           <h3>Have Model Calculate Closure Year: {CalClosureYear}</h3>
           <h3>Waste Design Capacity: {WasteDesignCapacity}</h3>
         <h2>Model Parameters</h2>
-          {/* <h3>Methane Generation Rate: {MehtaneGenerationRate}</h3>
+          <h3>Methane Generation Rate: {MethaneGenerationRate}</h3>
           <h3>Potential Methane Generation Capacity: {PotentialMethanGenCap}</h3>
           <h3>NMOC Concentration: {NMOCConcentration}</h3>
-          <h3>Methane Content: {MethaneContent}</h3> */}
+          <h3>Methane Content: {MethaneContent}</h3>
         <h2>Gases / Pollutants Selected</h2>
           <h3>Gas 1: {gas1}</h3>
           <h3>Gas 2: {gas2}</h3>

@@ -45,6 +45,10 @@ function AcceptanceRates() {
       gas2: gassesData.gas2,
       gas3: gassesData.gas3,
       gas4: gassesData.gas4,
+      MethaneGenerationRate: parametersData.methaneGenerationRate,
+      PotentialMethanGenCap: parametersData.potentialMethaneGenerationCapacity,
+      NMOCConcentration: parametersData.nmocConcentration,
+      MethaneContent: parametersData.methaneContent,
       // ... add more data as needed
     };
     navigate(path, { state: dataToPass });
