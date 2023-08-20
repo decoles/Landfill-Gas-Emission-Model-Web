@@ -22,7 +22,11 @@ function InputReview() {
     gas1,
     gas2,
     gas3,
-    gas4
+    gas4,
+    MethaneGenerationRate,
+    PotentialMethanGenCap,
+    NMOCConcentration,
+    MethaneContent,
     
     // gas1,
     // gas2,
@@ -32,27 +36,6 @@ function InputReview() {
     // ... other properties
   } = dataToPass;
 
-  // const {
-  //   openYear,
-  //   closeYear,
-  //   // ... other properties from characteristicsData
-  // } = characteristicsData;
-
-
-  // let LandfillOpenYear = openYear;
-  // let LandfillCloseYear = closeYear;
-  // let CalcClouseYear = CalcClosureYear;
-  // let wasteDesignCapacity = WasteDesignCapacityA;
-  // //Model Parameters
-  // let MehtaneGenerationRate = 0.0;
-  // let PotentialMethanGenCap = 0;
-  // let NMOCConcentration = 0;
-  // let MethaneContent = 0;
-  // //Gases / Pollutants Selected
-  // let gas1 = "";
-  // let gas2 = "";
-  // let gas3 = "";
-  // let gas4 = "";
 
 
   return (

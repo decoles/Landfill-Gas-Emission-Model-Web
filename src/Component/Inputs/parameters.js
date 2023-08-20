@@ -1,92 +1,149 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { MethaneGenRateOptions, PotentialMethaneGenCapacityOptions, NMOCConcentrationOptions, MethaneContentOptions } from "./data/parameterData";
 import { AppContext } from "../../AppContext";
 
 
 //Material UI
-import { InputLabel, Select, MenuItem, FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, TextField } from "@mui/material";
+import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
 function Parameters() {
 
 
 
+    const [methaneGenerationRate, setMethaneGenerationRate] = React.useState("CAA Conventional - 0.05");
+    const [potentialMethaneGenerationCapacity, setPotentialMethaneGenerationCapacity] = React.useState("CAA Conventional - 170");
+    const [nmocConcentration, setNmocConcentration] = React.useState("CAA - 4,000");
+    const [methaneContent, setMethaneContent] = React.useState("CAA 50% by volume");
     const { parametersData, setParametersData } = React.useContext(AppContext);
-    
 
+    const handleChange = (event) => {
+        setParametersData({
+            ...event,
+            methaneGenerationRate: methaneGenerationRate,
+            potentialMethaneGenerationCapacity: potentialMethaneGenerationCapacity,
+            nmocConcentration: nmocConcentration,
+            methaneContent: methaneContent,
+        });
+        console.log("parameter data", parametersData);
+    };
+    
+    useEffect(() => {
+        handleChange();
+    }, [methaneGenerationRate, potentialMethaneGenerationCapacity, nmocConcentration, methaneContent]);
+
+
+
+    const handleMethaneGenerationRateChange = (event) => {
+        setMethaneGenerationRate(event.target.value);
+        setParametersData({
+            ...parametersData,
+            methaneGenerationRate: event.target.value,
+        });
+        handleChange(event);
+    };
+
+    const handlePotentialMethaneGenerationCapacityChange = (event) => {
+        setPotentialMethaneGenerationCapacity(event.target.value);
+        setParametersData({
+            ...parametersData,
+            potentialMethaneGenerationCapacity: event.target.value,
+        });
+        handleChange(event);
+
+    };
+
+    const handleNmocConcentrationChange = (event) => {
+        setNmocConcentration(event.target.value);
+        setParametersData({
+            ...parametersData,
+            nmocConcentration: event.target.value,
+        });
+
+        handleChange(event);
+
+    };
+
+    const handleMethaneContentChange = (event) => {
+        setMethaneContent(event.target.value);
+        setParametersData({
+            ...parametersData,
+            methaneContent: event.target.value,
+        });
+        handleChange(event);
+
+    };
+
+    
+    
 
   return <div>
     <FormControl fullWidth>
-    <InputLabel id="demo-sidbmple-select-label">Methane Generation Rate, k(year^-1)</InputLabel>
+    <InputLabel>Methane Generation Rate, k(year^-1)</InputLabel>
     <Select
-        labelId="demo-sidbmple-select-label"
-        id="demo-simple-select"
-        //value= '' //{age}
-        defaultValue={0.05}
+        value= {methaneGenerationRate} 
         label="Methane Generation Rate, k(year^-1)"
-        //onChange={}
+        onChange={handleMethaneGenerationRateChange}
     >
-        <MenuItem value={0.05}>CAA Conventional - 0.05</MenuItem>
-        <MenuItem value={0.02}>CAA Arid Area - 0.02</MenuItem>
-        <MenuItem value={0.04}>Inventory Conventional - 0.04</MenuItem>
-        <MenuItem value={0.02}>Inventory Arid Area - 0.02</MenuItem>
-        <MenuItem value={0.7}>Invetory Wet - 0.7</MenuItem>
-        <MenuItem value={0}>User Specified</MenuItem>
+        {MethaneGenRateOptions.map((option, index) => (
+            <MenuItem key={index} value={option.name}>
+                {option.name}
+            </MenuItem>
+        ))}
+
+
+
     </Select>
     </FormControl>
     <br/>
     <br/>
 
     <FormControl fullWidth>
-    <InputLabel id="demo-sijjmple-select-label">Potential Methane Generation Capacity, L0 (m^3/MG)</InputLabel>
+    <InputLabel>Potential Methane Generation Capacity, L0 (m^3/MG)</InputLabel>
     <Select
-        labelId="demo-sijjmple-select-label"
-        id="demo-simple-select"
-        //value= '' //{age}
+        value={potentialMethaneGenerationCapacity}
         label="Potential Methane Generation Capacity, L0 (m^3/MG)"
-        defaultValue={170}
-    
-        //onChange={}
+        onChange={handlePotentialMethaneGenerationCapacityChange}
     >
-        <MenuItem value={170}>CAA Conventional - 170</MenuItem>
-        <MenuItem value={170}>CAA Arid Area - 170</MenuItem>
-        <MenuItem value={100}>Inventory Conventional - 100</MenuItem>
-        <MenuItem value={100}>Inventory Arid Area - 100</MenuItem>
-        <MenuItem value={96}>Invetory Wet - 96</MenuItem>
-        <MenuItem value={0}>User Specified</MenuItem>
+        {PotentialMethaneGenCapacityOptions.map((option, index) => (
+            <MenuItem key={index} value={option.name}>
+                {option.name}
+            </MenuItem>
+        ))}
     </Select>
     </FormControl>
     <br/>
     <br/>
 
     <FormControl fullWidth>
-    <InputLabel id="demo-siggmple-select-label">Methane Generation Rate, k(year^-1)</InputLabel>
+    <InputLabel>NMOC Concentration (ppmv as hexane)</InputLabel>
     <Select
-        labelId="demo-siggmple-select-label"
-        id="demo-simple-select"
-        //value= '' //{age}
-        label="Methane Generation Rate, k(year^-1)"
-        defaultValue={4000}
-        //onChange={}
+        value={nmocConcentration}
+        label="NMOC Concentration (ppmv as hexane)"
+        onChange={handleNmocConcentrationChange}
     >
-        <MenuItem value={4000}>CAA Arid Area - 4,000</MenuItem>
-        <MenuItem value={600}>Inventory No or Unkown Co-disposal - 600</MenuItem>
-        <MenuItem value={2400}>Inventory Co-disposal -2,400</MenuItem>
-        <MenuItem value={0}>User Specified</MenuItem>
+        {NMOCConcentrationOptions.map((option, index) => (
+            <MenuItem key={index} value={option.name}>
+                {option.name}
+            </MenuItem>
+        ))}
+
     </Select>
     </FormControl>
     <br/>
     <br/>
 
     <FormControl fullWidth>
-    <InputLabel id="demo-simjjple-select-label">Methane Generation Rate, k(year^-1)</InputLabel>
+    <InputLabel>Methan Content (% by volume)</InputLabel>
     <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        //value= '' //{age}
-        label="Methane Generation Rate, k(year^-1)"
+        value={methaneContent}
+        label="Methan Content (% by volume)"
         defaultValue={50}
-        //onChange={}
+        onChange={handleMethaneContentChange}
     >
-        <MenuItem value={50}>CAA 50% by volume</MenuItem>
-        <MenuItem value={0}>User Specified</MenuItem>
+        {MethaneContentOptions.map((option, index) => (
+            <MenuItem key={index} value={option.name}>
+                {option.name}
+            </MenuItem>
+        ))}
     </Select>
     </FormControl>
   </div>;
