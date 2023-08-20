@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 //Material UI
 import {
@@ -35,15 +35,13 @@ function Characterisitics() {
     if (event.target.value === "" || regex.test(event.target.value)) {
       setClose(event.target.value);
       if (event.target.value.length === 4 && open.length === 4 && open < event.target.value) {
-        //console.log("open year: " + open + " close year: " + event.target.value);
+        setClose(event.target.value);
         setCharacteristicsData((prev) => ({
           ...prev,
           openYear: open,
           closeYear: event.target.value,
           ModelCalculateClosureYear: calculateClosureBool,
           WasteDesignCapacity: wasteCapacity,
-
-
           }));
       }
     }
@@ -59,6 +57,19 @@ function Characterisitics() {
     setWasteCapacity(event.target.value);
     console.log("wasteCapacity: " + event.target.value);
   };
+
+  useEffect(() => {
+    setCharacteristicsData((prev) => ({
+      ...prev,
+      openYear: open,
+      closeYear: close,
+      ModelCalculateClosureYear: calculateClosureBool,
+      WasteDesignCapacity: wasteCapacity,
+    }));
+  }, [open, close, calculateClosureBool, wasteCapacity]);
+  
+      
+
 
   return (
     <div>

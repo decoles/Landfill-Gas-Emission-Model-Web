@@ -72,6 +72,7 @@ function AcceptanceRates() {
     { key: "calculatedUnits", name: `Calculated Units ( ${unitType2} )`},
   ];
 
+  //Generates the rows for the table based on years
   useEffect(() => {
     const newRows = [];
     for (let i = 0; i <= parseInt(YearCalculation(), 10); i++) {

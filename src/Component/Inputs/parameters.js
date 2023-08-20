@@ -9,6 +9,7 @@ function Parameters() {
 
 
     const { parametersData, setParametersData } = React.useContext(AppContext);
+    
 
 
   return <div>

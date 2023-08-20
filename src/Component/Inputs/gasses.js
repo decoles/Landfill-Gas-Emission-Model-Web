@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import gasData from "./data/gasData";
 import { AppContext } from "../../AppContext";
 
@@ -33,6 +33,12 @@ function Gasses() {
     });
     console.log(gassesData);
   };
+
+  useEffect(() => {
+    handleChange();
+  }, [gas1, gas2, gas3, gas4]);
+
+  
 
   const handleGas1Change = (event) => {
     setGas1(event.target.value);
