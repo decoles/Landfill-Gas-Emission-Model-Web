@@ -33,6 +33,11 @@ function AcceptanceRates() {
   
 
   const routeChange = () => {
+    if(characteristicsData.openYear === "" || characteristicsData.closeYear === "" )
+    {
+      alert("Please enter a valid Open Year or Close Year");
+      return;
+    }
     let path = `/review`;
     const dataToPass = {
       dataRows: generatedRows,

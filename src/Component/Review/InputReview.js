@@ -5,7 +5,6 @@ import 'react-data-grid/lib/styles.css';
 
 
 function InputReview() {
-
   const location = useLocation();
   const dataToPass = location.state;
   console.log("characteristicsData", dataToPass);
@@ -27,17 +26,11 @@ function InputReview() {
     PotentialMethanGenCap,
     NMOCConcentration,
     MethaneContent,
-    
-    // gas1,
-    // gas2,
-    // gas3,
-    // gas4,
-
-    // ... other properties
   } = dataToPass;
   console.log("dataToPass", dataToPass);
 
-
+  console.log("dataRows", dataRows);
+  console.log("dataColumnHeaders", dataColumnHeaders);
   return (
     <div className="InputReview">
         <h1>Input Review</h1>
@@ -57,10 +50,10 @@ function InputReview() {
           <h3>Gas 3: {gas3}</h3>
           <h3>Gas 4: {gas4}</h3>
         {/* <DataGrid>      <DataGrid 
-        columns={columns} 
-        rows={generatedRows} 
+        columns={dataColumnHeaders} 
+        rows={dataRows} 
         style={{ height: "90dvh", border: '2px solid red' }} 
-        /></DataGrid> *} */}
+        /></DataGrid>  */}
     </div>
   );
 }
