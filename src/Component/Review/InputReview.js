@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState, any} from 'react';
 import { useLocation } from 'react-router-dom'; // Assuming you are using React Router for navigation
 import DataGrid from "react-data-grid";
 import 'react-data-grid/lib/styles.css';
@@ -8,8 +8,6 @@ function InputReview() {
   const location = useLocation();
   const dataToPass = location.state;
   console.log("characteristicsData", dataToPass);
-
-  
 
   const {
     dataRows,
@@ -28,6 +26,10 @@ function InputReview() {
     MethaneContent,
   } = dataToPass;
   console.log("dataToPass", dataToPass);
+
+
+
+
 
   console.log("dataRows", dataRows);
   console.log("dataColumnHeaders", dataColumnHeaders);
@@ -48,12 +50,14 @@ function InputReview() {
           <h3>Gas 1: {gas1}</h3>
           <h3>Gas 2: {gas2}</h3>
           <h3>Gas 3: {gas3}</h3>
-          <h3>Gas 4: {gas4}</h3>
-        {/* <DataGrid>      <DataGrid 
-        columns={dataColumnHeaders} 
-        rows={dataRows} 
-        style={{ height: "90dvh", border: '2px solid red' }} 
-        /></DataGrid>  */}
+          <h3>Gas 4: {gas4}</h3> 
+        <DataGrid
+      columns={dataColumnHeaders}
+      //rows={dataRows}
+      
+      enableCellSelect={true}
+        
+        ></DataGrid>
     </div>
   );
 }

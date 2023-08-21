@@ -57,8 +57,6 @@ function AcceptanceRates() {
       // ... add more data as needed
     };
     navigate(path, { state: dataToPass });
-    console.log("dataToPass", dataToPass);
-
   };
   //Dictates what happens when the drop down menu is changed/ swaps the units
   const dropDownChange = (event) => {
