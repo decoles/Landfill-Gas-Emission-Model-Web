@@ -54,7 +54,8 @@ function AcceptanceRates() {
       PotentialMethanGenCap: parametersData.potentialMethaneGenerationCapacity,
       NMOCConcentration: parametersData.nmocConcentration,
       MethaneContent: parametersData.methaneContent,
-      // ... add more data as needed
+      unitType: unitType,
+      unitType2: unitType2,
     };
     navigate(path, { state: dataToPass });
   };

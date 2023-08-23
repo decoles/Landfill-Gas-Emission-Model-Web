@@ -24,6 +24,8 @@ function InputReview() {
     PotentialMethanGenCap,
     NMOCConcentration,
     MethaneContent,
+    UnitType,
+    UnitType2,
   } = dataToPass;
   console.log("dataToPass", dataToPass);
 
