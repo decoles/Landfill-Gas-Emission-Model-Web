@@ -25,13 +25,10 @@ function AcceptanceRates() {
 
   const YearCalculation = () => {
     const { openYear, closeYear } = characteristicsData;
-    console.log("open year: " + openYear + " close year: " + closeYear);
     return closeYear - openYear;
   };
-
-  const dataGridRef = useRef(null);
   
-
+  //Data to pass to review page
   const routeChange = () => {
     if(characteristicsData.openYear === "" || characteristicsData.closeYear === "" )
     {
@@ -61,13 +58,15 @@ function AcceptanceRates() {
     navigate(path, { state: dataToPass });
   };
 
-  //get variable type of dataRows
-  console.log("dataRows", typeof generatedRows);
   //Dictates what happens when the drop down menu is changed/ swaps the units
   const dropDownChange = (event) => {
     const selectedValue = event.target.value;
     setUnitType(selectedValue === 0 ? "Mg/year" : "short tons/year");
     setUnitType2(selectedValue === 1 ? "Mg/year": "short tons/year");
+    for(let i = 0; i < generatedRows.length; i++)
+    {
+      generatedRows[i].calculatedUnits = generatedRows[i].inputUnits * (selectedValue === 0 ? 1 : 1.10231);
+    }
   };
 
   //Just for displaying on input page
@@ -99,17 +98,6 @@ function AcceptanceRates() {
     
   }, [characteristicsData.openYear, characteristicsData.closeYear]);
 
-  const onGridRowsUpdated = ({ fromRow, toRow, updated }) => {
-    setGeneratedRows((prevRows) => {
-      const updatedRows = [...prevRows];
-      for (let i = fromRow; i <= toRow; i++) {
-        updatedRows[i] = { ...updatedRows[i], ...updated };
-      }
-      console.log(updatedRows);
-      return updatedRows;
-    });
-  };
-
   return (
     <div>
       <FormControl fullWidth>
@@ -129,9 +117,9 @@ function AcceptanceRates() {
           columns={columns} 
           rows={generatedRows} 
           style={{ width: "100%", border: '2px solid red' }} 
-          onGridRowsUpdated={onGridRowsUpdated}
-          // onSelectedRowsChange={setSelectedRows}
-          enableCellSelect={false}
+          onRowsChange={setGeneratedRows}
+
+          enableCellSelect={true}
           />
       </div>
 
