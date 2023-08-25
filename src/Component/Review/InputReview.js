@@ -7,7 +7,6 @@ import 'react-data-grid/lib/styles.css';
 function InputReview() {
   const location = useLocation();
   const dataToPass = location.state;
-  console.log("characteristicsData", dataToPass);
 
   const {
     dataRows,
@@ -31,6 +30,7 @@ function InputReview() {
 
 
 
+  console.log("dataRows", typeof dataRows);
 
 
   console.log("dataRows", dataRows);
@@ -53,13 +53,11 @@ function InputReview() {
           <h3>Gas 2: {gas2}</h3>
           <h3>Gas 3: {gas3}</h3>
           <h3>Gas 4: {gas4}</h3> 
-        <DataGrid
-      columns={dataColumnHeaders}
-      //rows={dataRows}
-      
-      enableCellSelect={true}
-        
-        ></DataGrid>
+          <DataGrid 
+          columns={dataColumnHeaders} 
+          rows={dataRows} 
+          style={{ width: "100%", border: '2px solid red' }} 
+          />
     </div>
   );
 }

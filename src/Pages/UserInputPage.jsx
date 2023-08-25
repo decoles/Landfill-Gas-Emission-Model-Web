@@ -14,6 +14,7 @@ function UserInput() {
   return (
     <AppProvider>
     <div className="UserInput">
+      <b>Lanfill Name or Identifier: </b>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <p>Landfill Characterisitics</p>

@@ -56,10 +56,13 @@ function AcceptanceRates() {
       MethaneContent: parametersData.methaneContent,
       unitType: unitType,
       unitType2: unitType2,
-      
+
     };
     navigate(path, { state: dataToPass });
   };
+
+  //get variable type of dataRows
+  console.log("dataRows", typeof generatedRows);
   //Dictates what happens when the drop down menu is changed/ swaps the units
   const dropDownChange = (event) => {
     const selectedValue = event.target.value;
@@ -110,9 +113,9 @@ function AcceptanceRates() {
   return (
     <div>
       <FormControl fullWidth>
+        {/* Drowpdown here dosent matter as state is already being passed (choosing Input type) */}
         <InputLabel>Input Units:</InputLabel>
         <Select
-          //value= '' //{age} 
           defaultValue={0}
           label="Input Units:"
           onChange={dropDownChange}
