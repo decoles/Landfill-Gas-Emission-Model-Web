@@ -56,6 +56,7 @@ function AcceptanceRates() {
       MethaneContent: parametersData.methaneContent,
       unitType: unitType,
       unitType2: unitType2,
+      
     };
     navigate(path, { state: dataToPass });
   };
@@ -109,10 +110,8 @@ function AcceptanceRates() {
   return (
     <div>
       <FormControl fullWidth>
-        <InputLabel id="demo-sidbmple-select-label">Input Units:</InputLabel>
+        <InputLabel>Input Units:</InputLabel>
         <Select
-          labelId="demo-sidbmple-select-label"
-          id="demo-simple-select"
           //value= '' //{age} 
           defaultValue={0}
           label="Input Units:"
