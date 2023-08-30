@@ -23,18 +23,7 @@ function InputReview() {
     PotentialMethanGenCap,
     NMOCConcentration,
     MethaneContent,
-    UnitType,
-    UnitType2,
   } = dataToPass;
-  console.log("dataToPass", dataToPass);
-
-
-
-  console.log("dataRows", typeof dataRows);
-
-
-  console.log("dataRows", dataRows);
-  console.log("dataColumnHeaders", dataColumnHeaders);
   return (
     <div className="InputReview">
         <h1>Input Review</h1>
@@ -58,6 +47,13 @@ function InputReview() {
           rows={dataRows} 
           style={{ width: "100%", border: '2px solid red' }} 
           />
+
+        <button>
+          <a href="/">Back</a>
+        </button>
+        <button>
+          <a href="/output">Next</a>
+        </button>
     </div>
   );
 }

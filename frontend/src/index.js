@@ -4,6 +4,7 @@ import './index.css';
 import SignIn from './Pages/SignInPage';
 import UserInput from './Pages/UserInputPage';
 import InputReviewPage from './Pages/InputReviewPage';
+import OutputPage from './Pages/OutputPage';
 
 
 import {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/review",
     element: <InputReviewPage />,
+  },
+  {
+    path: "output",
+    element: <OutputPage />,
   }
   
 ]);
