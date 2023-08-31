@@ -27,6 +27,7 @@ function InputReview() {
   return (
     <div className="InputReview">
         <h1>Input Review</h1>
+        <h2>Landfill Name Or Identifier ....</h2>
          <h2>Landfill Characterisitics</h2>
           <h3>Landfill Open Year:  {openYear}</h3>
           <h3>Landfill Close Year: {closeYear}</h3>
@@ -52,7 +53,7 @@ function InputReview() {
           <a href="/">Back</a>
         </button>
         <button>
-          <a href="/output">Next</a>
+          <a href="/results">Next</a>
         </button>
     </div>
   );

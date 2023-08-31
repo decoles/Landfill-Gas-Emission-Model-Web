@@ -4,8 +4,7 @@ import './index.css';
 import SignIn from './Pages/SignInPage';
 import UserInput from './Pages/UserInputPage';
 import InputReviewPage from './Pages/InputReviewPage';
-import OutputPage from './Pages/OutputPage';
-
+import ResultsPage from './Pages/ResultsPage';
 
 import {
   createBrowserRouter,
@@ -27,8 +26,8 @@ const router = createBrowserRouter([
     element: <InputReviewPage />,
   },
   {
-    path: "output",
-    element: <OutputPage />,
+    path: "/results",
+    element: <ResultsPage />,
   }
   
 ]);
