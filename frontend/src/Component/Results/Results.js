@@ -15,7 +15,6 @@ function Results() {
       Methan xxxx % by volume
       <br></br>
       <FormControl fullWidth>
-        {/* Drowpdown here dosent matter as state is already being passed (choosing Input type) */}
         <InputLabel>User-specified Unit:</InputLabel>
         <Select
           defaultValue={0}

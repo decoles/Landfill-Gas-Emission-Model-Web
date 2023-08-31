@@ -7,7 +7,7 @@ import 'react-data-grid/lib/styles.css';
 function InputReview() {
   const location = useLocation();
   const dataToPass = location.state;
-
+  //let navigate = useNavigate();
   const {
     dataRows,
     dataColumnHeaders,
@@ -24,6 +24,11 @@ function InputReview() {
     NMOCConcentration,
     MethaneContent,
   } = dataToPass;
+
+  // const handleClick = () => {
+  //   navigate("/");    
+  // };
+
   return (
     <div className="InputReview">
         <h1>Input Review</h1>
@@ -49,9 +54,7 @@ function InputReview() {
           style={{ width: "100%", border: '2px solid red' }} 
           />
 
-        <button>
-          <a href="/">Back</a>
-        </button>
+        {/* <button onClick={handleClick}>Back</button> */}
         <button>
           <a href="/results">Next</a>
         </button>
