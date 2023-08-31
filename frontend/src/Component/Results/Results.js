@@ -1,13 +1,10 @@
-import React from "react";
-
+import React from "react"; 
 import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
 
 function Results() {
-
   const dropDownChange = (event) => {
 
   };
-
 
   return (
     <div className="Results">
