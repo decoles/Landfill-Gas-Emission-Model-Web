@@ -83,6 +83,8 @@ function AcceptanceRates() {
     { key: "calculatedUnits", name: `Calculated Units ( ${unitType2} )`},
   ];
 
+
+
   //Generates the rows for the table based on years
   useEffect(() => {
     const newRows = [];
@@ -94,9 +96,23 @@ function AcceptanceRates() {
         calculatedUnits: 0,
       });
     }
+    // console.log("USE EFFECT")
+    // console.log(newRows);
     setGeneratedRows(newRows);
+
     
   }, [characteristicsData.openYear, characteristicsData.closeYear]);
+
+  const handleRowChange = (e) => {
+    console.log(e);
+    const { id, field, value } = e;
+    const newRows = [...generatedRows];
+    newRows[id] = {
+      ...newRows[id],
+      [field]: value,
+    };
+    setGeneratedRows(newRows);
+  };
 
   return (
     <div>
