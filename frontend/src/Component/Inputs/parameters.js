@@ -23,7 +23,6 @@ function Parameters() {
             nmocConcentration: nmocConcentration,
             methaneContent: methaneContent,
         });
-        console.log("parameter data", parametersData);
     };
     
     useEffect(() => {
@@ -135,7 +134,7 @@ function Parameters() {
     <InputLabel>Methan Content (% by volume)</InputLabel>
     <Select
         value={methaneContent}
-        label="Methan Content (% by volume)"
+        label="Methane Content (% by volume)"
         defaultValue={50}
         onChange={handleMethaneContentChange}
     >

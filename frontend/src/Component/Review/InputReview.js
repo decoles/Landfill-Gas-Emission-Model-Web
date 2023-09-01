@@ -1,13 +1,15 @@
 import {React, useState, any} from 'react';
 import { useLocation } from 'react-router-dom'; // Assuming you are using React Router for navigation
+import { useNavigate } from 'react-router-dom'; // Assuming you are using React Router for navigation
 import DataGrid from "react-data-grid";
 import 'react-data-grid/lib/styles.css';
 
 
 function InputReview() {
+  const navigate = useNavigate();
   const location = useLocation();
   const dataToPass = location.state;
-  //let navigate = useNavigate();
+
   const {
     dataRows,
     dataColumnHeaders,
@@ -25,9 +27,10 @@ function InputReview() {
     MethaneContent,
   } = dataToPass;
 
-  // const handleClick = () => {
-  //   navigate("/");    
-  // };
+  const routeChangeToOutput = () => {
+    let path = `/results`;
+    navigate(path, { state: dataToPass });
+  };
 
   return (
     <div className="InputReview">
@@ -55,9 +58,10 @@ function InputReview() {
           />
 
         {/* <button onClick={handleClick}>Back</button> */}
-        <button>
-          <a href="/results">Next</a>
+        <button onClick={routeChangeToOutput}>
+          Continue
         </button>
+        
     </div>
   );
 }

@@ -31,7 +31,6 @@ function Gasses() {
       gas3: gas3,
       gas4: gas4,
     });
-    console.log(gassesData);
   };
 
   useEffect(() => {

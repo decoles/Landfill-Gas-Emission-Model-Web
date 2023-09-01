@@ -1,7 +1,30 @@
 import React from "react"; 
+import { useLocation } from 'react-router-dom'; // Assuming you are using React Router for navigation
+
 import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
 
 function Results() {
+  const outputData = useLocation().state;
+  //Set variables of outputData to be used in the results page
+  const {
+    dataRows,
+    dataColumnHeaders,
+    openYear,
+    closeYear,
+    CalClosureYear,
+    WasteDesignCapacity,
+    gas1,
+    gas2,
+    gas3,
+    gas4,
+    MethaneGenerationRate,
+    PotentialMethanGenCap,
+    NMOCConcentration,
+    MethaneContent,
+  } = outputData;
+
+  console.log(outputData);
+
   const dropDownChange = (event) => {
 
   };
@@ -26,6 +49,10 @@ function Results() {
           <MenuItem value={2}>short tons/year</MenuItem>
         </Select>
       </FormControl>
+
+
+
+
     </div>
   );
 }   
