@@ -28,8 +28,6 @@ function Characterisitics() {
     }
   };
 
-
-  
   const handleChangeClose = (event) => {
     const regex = /^[0-9\b]+$/;
     if (event.target.value === "" || regex.test(event.target.value)) {
@@ -68,9 +66,7 @@ function Characterisitics() {
     }));
   }, [open, close, calculateClosureBool, wasteCapacity]);
   
-      
-
-
+    
   return (
     <div>
       <TextField

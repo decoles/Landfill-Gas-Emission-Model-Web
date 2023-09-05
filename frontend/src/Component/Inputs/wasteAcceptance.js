@@ -22,9 +22,12 @@ function AcceptanceRates() {
   const [generatedRows, setGeneratedRows] = useState([]);
   const [unitType, setUnitType] = useState("Mg/year");
   const [unitType2, setUnitType2] = useState("short tons/year");
+  const [openYear, setOpenYear] = useState(0);
+  const [closeYear, setCloseYear] = useState(0);
 
   const YearCalculation = () => {
     const { openYear, closeYear } = characteristicsData;
+    console.log("openYear: " + openYear);
     return closeYear - openYear;
   };
   
