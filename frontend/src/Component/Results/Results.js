@@ -1,8 +1,9 @@
 import React from "react"; 
 import { useLocation } from 'react-router-dom'; // Assuming you are using React Router for navigation
-
+import DataGrid from "react-data-grid";
+import 'react-data-grid/lib/styles.css';
 import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
-
+ 
 function Results() {
   const outputData = useLocation().state;
   //Set variables of outputData to be used in the results page
@@ -49,7 +50,14 @@ function Results() {
           <MenuItem value={2}>short tons/year</MenuItem>
         </Select>
       </FormControl>
-
+      <br></br>
+      <br></br>
+      <DataGrid 
+          columns={dataColumnHeaders} 
+          rows={dataRows} 
+          style={{ width: "100%", border: '2px solid red' }} 
+          enableCellSelect={true}
+          />
 
 
 
