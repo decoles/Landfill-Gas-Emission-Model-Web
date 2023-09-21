@@ -1,8 +1,8 @@
 import {React, useState, any} from 'react';
 import { useLocation } from 'react-router-dom'; // Assuming you are using React Router for navigation
 import { useNavigate } from 'react-router-dom'; // Assuming you are using React Router for navigation
-import DataGrid from "react-data-grid";
-import 'react-data-grid/lib/styles.css';
+import ReactDataGrid from '@inovua/reactdatagrid-community'
+import '@inovua/reactdatagrid-community/index.css'
 
 
 function InputReview() {
@@ -32,6 +32,8 @@ function InputReview() {
     navigate(path, { state: dataToPass });
   };
 
+  const gridStyle = { minHeight: 550 };
+
   return (
     <div className="InputReview">
         <h1>Input Review</h1>
@@ -51,11 +53,14 @@ function InputReview() {
           <h3>Gas 2: {gas2}</h3>
           <h3>Gas 3: {gas3}</h3>
           <h3>Gas 4: {gas4}</h3> 
-          <DataGrid 
-          columns={dataColumnHeaders} 
-          rows={dataRows} 
-          style={{ width: "100%", border: '2px solid red' }} 
-          />
+          <ReactDataGrid
+        idProperty="id"
+        style={gridStyle}
+        editable={false}
+        columns={dataColumnHeaders}
+        dataSource={dataRows}
+        
+      />
 
         {/* <button onClick={handleClick}>Back</button> */}
         <button onClick={routeChangeToOutput}>

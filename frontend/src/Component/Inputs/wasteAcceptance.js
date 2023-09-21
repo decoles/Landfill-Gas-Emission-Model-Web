@@ -85,9 +85,9 @@ function AcceptanceRates() {
 
   //Columns for the review page, otherwise columns breaks because of renderEditCell
   const columnsPassToReview = [
-    { key: "year", name: "Year"},
-    { key: "inputUnits", name: `Input Units ( ${unitType} )`},
-    { key: "calculatedUnits", name: `Calculated Units ( ${unitType2} )`},
+    { name: "year", header: "Year"},
+    { name: "inputUnits", header: `Input Units ( ${unitType} )`},
+    { name: "calculatedUnits", header: `Calculated Units ( ${unitType2} )`},
   ];
 
 
@@ -99,15 +99,10 @@ function AcceptanceRates() {
       newRows.push({
         id: i,
         year: parseInt(characteristicsData.openYear, 10) + parseInt(i, 10),
-        inputUnits: 0,
-        calculatedUnits: 0,
+
       });
     }
-    // console.log("USE EFFECT")
-    // console.log(newRows);
     setGeneratedRows(newRows);
-
-    
   }, [characteristicsData.openYear, characteristicsData.closeYear]);
 
   const handleRowChange = (e) => {
@@ -125,7 +120,6 @@ function AcceptanceRates() {
     const data = [...generatedRows];
     data[rowId][columnId] = value;
     data[rowId].calculatedUnits = value * 5;
-
     setGeneratedRows(data);
   }, [generatedRows])
 
@@ -145,16 +139,6 @@ function AcceptanceRates() {
           <MenuItem value={1}>short tons/year</MenuItem>
         </Select>
       </FormControl>
-      {/* <div style={{maxHeight: "100%"}}> 
-        <DataGrid 
-          columns={columns} 
-          rows={generatedRows} 
-          style={{ width: "100%", border: '2px solid red' }} 
-          onRowsChange={setGeneratedRows}
-
-          enableCellSelect={true}
-          />
-      </div> */}
       <ReactDataGrid
         idProperty="id"
         style={gridStyle}
@@ -165,7 +149,6 @@ function AcceptanceRates() {
         dataSource={generatedRows}
       />
         <button onClick={routeChange}>Go to Input Review</button>
-        
     </div>
   );
 }
