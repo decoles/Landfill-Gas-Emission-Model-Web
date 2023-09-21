@@ -28,36 +28,33 @@ function Results() {
   const groups = [
     {
       name: 'Waste Accepted',
-      group: 'wasteAccepted',
       header: 'Waste Accepted',
     },
     {
       name: 'Waste-In-Place',
-      group: 'wasteInPlace',
       header: 'Waste-In-Place',
     }
   ]
 
   const column = [
     {
-      name: `${unitType}`,
-      header: `${unitType}`,
-      group: 'wasteAccepted',
-    },
-    {
-      name: `${unitType2}`,
-      header: `${unitType2}`,
-      group: 'wasteAccepted',
-    },
-    {
       name: 'Year',
       header: 'Year',
-      group: 'wasteInPlace',
+    },
+    {
+      name: `unitType`,
+      header: `${unitType}`,
+      group: 'Waste Accepted',
+    },
+    {
+      name: `unitType2`,
+      header: `${unitType2}`,
+      group: 'Waste Accepted',
     },
     {
       name: 'Waste-In-Place',
       header: 'Waste-In-Place',
-      group: 'wasteInPlace',
+      group: 'Waste-In-Place',
     },
 
 
@@ -102,6 +99,7 @@ function Results() {
         idProperty="id"
         style={gridStyle}
         editable={false}
+        groups={groups}
         columns={column}
         dataSource={dataRows}
       />
