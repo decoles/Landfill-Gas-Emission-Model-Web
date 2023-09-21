@@ -25,6 +25,45 @@ function Results() {
     unitType2: unitType2,
   } = outputData;
 
+  const groups = [
+    {
+      name: 'Waste Accepted',
+      group: 'wasteAccepted',
+      header: 'Waste Accepted',
+    },
+    {
+      name: 'Waste-In-Place',
+      group: 'wasteInPlace',
+      header: 'Waste-In-Place',
+    }
+  ]
+
+  const column = [
+    {
+      name: `${unitType}`,
+      header: `${unitType}`,
+      group: 'wasteAccepted',
+    },
+    {
+      name: `${unitType2}`,
+      header: `${unitType2}`,
+      group: 'wasteAccepted',
+    },
+    {
+      name: 'Year',
+      header: 'Year',
+      group: 'wasteInPlace',
+    },
+    {
+      name: 'Waste-In-Place',
+      header: 'Waste-In-Place',
+      group: 'wasteInPlace',
+    },
+
+
+
+  ]
+
   console.log(outputData);
 
   const dropDownChange = (event) => {
@@ -63,12 +102,9 @@ function Results() {
         idProperty="id"
         style={gridStyle}
         editable={false}
-        columns={dataColumnHeaders}
+        columns={column}
         dataSource={dataRows}
       />
-
-
-
     </div>
   );
 }   

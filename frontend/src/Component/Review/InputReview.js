@@ -25,7 +25,13 @@ function InputReview() {
     PotentialMethanGenCap,
     NMOCConcentration,
     MethaneContent,
+    unitType: unitType,
+    unitType2: unitType2,
   } = dataToPass;
+  
+
+
+  
 
   const routeChangeToOutput = () => {
     let path = `/results`;
@@ -53,14 +59,14 @@ function InputReview() {
           <h3>Gas 2: {gas2}</h3>
           <h3>Gas 3: {gas3}</h3>
           <h3>Gas 4: {gas4}</h3> 
+
           <ReactDataGrid
-        idProperty="id"
-        style={gridStyle}
-        editable={false}
-        columns={dataColumnHeaders}
-        dataSource={dataRows}
-        
-      />
+            idProperty="id"
+            style={gridStyle}
+            editable={false}
+            columns={dataColumnHeaders}
+            dataSource={dataRows}
+          />
 
         {/* <button onClick={handleClick}>Back</button> */}
         <button onClick={routeChangeToOutput}>

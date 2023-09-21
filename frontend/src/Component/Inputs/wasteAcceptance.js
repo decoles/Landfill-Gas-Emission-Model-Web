@@ -90,8 +90,6 @@ function AcceptanceRates() {
     { name: "calculatedUnits", header: `Calculated Units ( ${unitType2} )`},
   ];
 
-
-
   //Generates the rows for the table based on years
   useEffect(() => {
     const newRows = [];
@@ -99,22 +97,23 @@ function AcceptanceRates() {
       newRows.push({
         id: i,
         year: parseInt(characteristicsData.openYear, 10) + parseInt(i, 10),
-
+        inputUnits: 0,
+        calculatedUnits: 0, //REMOVE FOR PRODUCTION
       });
     }
     setGeneratedRows(newRows);
   }, [characteristicsData.openYear, characteristicsData.closeYear]);
 
-  const handleRowChange = (e) => {
-    console.log(e);
-    const { id, field, value } = e;
-    const newRows = [...generatedRows];
-    newRows[id] = {
-      ...newRows[id],
-      [field]: value,
-    };
-    setGeneratedRows(newRows);
-  };
+  // const handleRowChange = (e) => {
+  //   console.log(e);
+  //   const { id, field, value } = e;
+  //   const newRows = [...generatedRows];
+  //   newRows[id] = {
+  //     ...newRows[id],
+  //     [field]: value,
+  //   };
+  //   setGeneratedRows(newRows);
+  // };
 
   const onEditComplete = useCallback(({ value, columnId, rowId }) => {
     const data = [...generatedRows];
@@ -123,8 +122,6 @@ function AcceptanceRates() {
     setGeneratedRows(data);
   }, [generatedRows])
 
-
-  
   return (
     <div>
       <FormControl fullWidth>
