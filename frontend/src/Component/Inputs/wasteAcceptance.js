@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { AppContext } from "../../AppContext";
 import { useNavigate } from 'react-router-dom'; // Assuming you are using React Router for navigation
 
@@ -13,9 +13,13 @@ import DataGrid from "react-data-grid";
 import 'react-data-grid/lib/styles.css';
 import { textEditor } from "react-data-grid";
 
+import ReactDataGrid from '@inovua/reactdatagrid-community'
+import '@inovua/reactdatagrid-community/index.css'
+
 
 function AcceptanceRates() {
   const navigate = useNavigate();
+  const gridStyle = { minHeight: 550 };
 
   const { characteristicsData, parametersData, gassesData, } = React.useContext(AppContext);
   const [inputUnits, setInputUnits] = React.useState(0);
@@ -74,9 +78,9 @@ function AcceptanceRates() {
 
   //Just for displaying on input page
   const columns = [
-    { key: "year", name: "Year", editable: false},
-    { key: "inputUnits", name: `Input Units ( ${unitType} )`, renderEditCell: textEditor},
-    { key: "calculatedUnits", name: `Calculated Units ( ${unitType2} )`, editable: false},
+    { name: "year", header: "Year", editable: false},
+    { name: "inputUnits", header: `Input Units ( ${unitType} )`, renderEditCell: textEditor},
+    { name: "calculatedUnits", header: `Calculated Units ( ${unitType2} )`, editable: false},
   ];
 
   //Columns for the review page, otherwise columns breaks because of renderEditCell
@@ -117,6 +121,15 @@ function AcceptanceRates() {
     setGeneratedRows(newRows);
   };
 
+  const [dataSource, setDataSource] = useState(generatedRows);
+
+  const onEditComplete = useCallback(({ value, columnId, rowId }) => {
+    const data = [...dataSource];
+    data[rowId][columnId] = value;
+
+    setDataSource(data);
+  }, [dataSource])
+
   return (
     <div>
       <FormControl fullWidth>
@@ -131,7 +144,7 @@ function AcceptanceRates() {
           <MenuItem value={1}>short tons/year</MenuItem>
         </Select>
       </FormControl>
-      <div style={{maxHeight: "100%"}}> 
+      {/* <div style={{maxHeight: "100%"}}> 
         <DataGrid 
           columns={columns} 
           rows={generatedRows} 
@@ -140,8 +153,15 @@ function AcceptanceRates() {
 
           enableCellSelect={true}
           />
-      </div>
-
+      </div> */}
+      <ReactDataGrid
+        idProperty="id"
+        style={gridStyle}
+        onEditComplete={onEditComplete}
+        editable={true}
+        columns={columns}
+        dataSource={generatedRows}
+      />
         <button onClick={routeChange}>Go to Input Review</button>
         
     </div>

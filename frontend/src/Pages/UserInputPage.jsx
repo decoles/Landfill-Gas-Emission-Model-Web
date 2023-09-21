@@ -13,7 +13,8 @@ import Grid from '@mui/material/Grid';
 function UserInput() {
   return (
     <AppProvider>
-    <div className="UserInput">
+    <div className="UserInput"
+    >
       <b>Lanfill Name or Identifier: </b>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
@@ -31,10 +32,7 @@ function UserInput() {
           <p>Enter Waste Acceptance Rates</p>
           <AcceptanceRates />
         </Grid>
-
       </Grid>
-
-
     </div>
     </AppProvider>
   );
