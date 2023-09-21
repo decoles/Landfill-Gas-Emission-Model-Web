@@ -28,7 +28,7 @@ function AcceptanceRates() {
   const [unitType2, setUnitType2] = useState("short tons/year");
   const [openYear, setOpenYear] = useState(0);
   const [closeYear, setCloseYear] = useState(0);
-
+  const [allowRowTabNavigation, setAllowRowTabNavigation] = useState(true); //for tabbing on table
   const YearCalculation = () => {
     const { openYear, closeYear } = characteristicsData;
     console.log("openYear: " + openYear);
@@ -121,15 +121,16 @@ function AcceptanceRates() {
     setGeneratedRows(newRows);
   };
 
-  const [dataSource, setDataSource] = useState(generatedRows);
-
   const onEditComplete = useCallback(({ value, columnId, rowId }) => {
-    const data = [...dataSource];
+    const data = [...generatedRows];
     data[rowId][columnId] = value;
+    data[rowId].calculatedUnits = value * 5;
 
-    setDataSource(data);
-  }, [dataSource])
+    setGeneratedRows(data);
+  }, [generatedRows])
 
+
+  
   return (
     <div>
       <FormControl fullWidth>
@@ -159,6 +160,7 @@ function AcceptanceRates() {
         style={gridStyle}
         onEditComplete={onEditComplete}
         editable={true}
+        allowRowTabNavigation={allowRowTabNavigation}
         columns={columns}
         dataSource={generatedRows}
       />
