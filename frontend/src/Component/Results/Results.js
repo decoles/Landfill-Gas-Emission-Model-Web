@@ -1,6 +1,6 @@
 import React from "react"; 
 import { useLocation } from 'react-router-dom'; // Assuming you are using React Router for navigation
-import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
+import { InputLabel, Select, MenuItem, FormControl, Checkbox } from "@mui/material";
 import ReactDataGrid from '@inovua/reactdatagrid-community'
 import '@inovua/reactdatagrid-community/index.css'
 function Results() {
@@ -80,6 +80,11 @@ function Results() {
       <br></br>
       Methan xxxx % by volume
       <br></br>
+      <br></br>
+      <Checkbox {...gas1} /> <label>Gas 1</label>
+      <Checkbox {...gas2} /> <label>Gas 2</label>
+      <Checkbox {...gas3} /> <label>Gas 3</label>
+      <Checkbox {...gas4} /> <label>Gas 4</label>
       <FormControl fullWidth>
         <InputLabel>User-specified Unit:</InputLabel>
         <Select
