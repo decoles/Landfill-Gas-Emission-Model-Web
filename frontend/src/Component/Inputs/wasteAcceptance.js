@@ -73,19 +73,9 @@ function AcceptanceRates() {
     for(let i = 0; i < generatedRows.length; i++)
     {
       if (selectedValue === 0)
-      {
         generatedRows[i].calculatedUnits = generatedRows[i].inputUnits * 100000 * 0.022 / 2000 
-        console.log(generatedRows[i].calculatedUnits);
-        console.log(generatedRows[i].inputUnits);
-        console.log("i" + i)
-      }
       else
-      {
         generatedRows[i].calculatedUnits = generatedRows[i].inputUnits * 2000 / (100000 * 0.022);
-        console.log(generatedRows[i].calculatedUnits);
-        console.log(generatedRows[i].inputUnits);
-        console.log("i" + i)
-      }
     }  };
 
   //Just for displaying on input page
@@ -116,29 +106,14 @@ function AcceptanceRates() {
     setGeneratedRows(newRows);
   }, [characteristicsData.openYear, characteristicsData.closeYear]);
 
-  // const handleRowChange = (e) => {
-  //   console.log(e);
-  //   const { id, field, value } = e;
-  //   const newRows = [...generatedRows];
-  //   newRows[id] = {
-  //     ...newRows[id],
-  //     [field]: value,
-  //   };
-  //   setGeneratedRows(newRows);
-  // };
-
   //changes calcuated units with input units
   const onEditComplete = useCallback(({ value, columnId, rowId }) => {
     const data = [...generatedRows];
     data[rowId][columnId] = value;
     if(unitType === "Mg/year")
-    {
       data[rowId].calculatedUnits = value * 100000 * 0.022 / 2000 
-    }
     else
-    {
       data[rowId].calculatedUnits = value * 2000 / (100000 * 0.022)
-    }
     setGeneratedRows(data);
   }, [generatedRows])
 
