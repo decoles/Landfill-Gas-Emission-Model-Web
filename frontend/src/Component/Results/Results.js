@@ -33,7 +33,24 @@ function Results() {
     {
       name: 'Waste-In-Place',
       header: 'Waste-In-Place',
-    }
+    },
+    {
+      name: `gas1`,
+      header: `${gas1}`,
+    },
+    {
+      name: `gas2`,
+      header: `${gas2}`,
+    },
+    {
+      name: `gas3`,
+      header: `${gas3}`,
+    },
+    {
+      name: `gas4`,
+      header: `${gas4}`,
+    },
+
   ]
 
   const column = [
@@ -53,8 +70,18 @@ function Results() {
     },
     {
       name: 'Waste-In-Place',
-      header: 'Waste-In-Place',
+      header: `${unitType}`,
       group: 'Waste-In-Place',
+    },
+    {
+      name: 'Waste-In-Place',
+      header: `${unitType2}`,
+      group: 'Waste-In-Place',
+    },
+    {
+      name: `gas1`,
+      header: `${gas1}`,
+      group: `${gas1}`,
     },
 
 
