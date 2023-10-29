@@ -22,7 +22,6 @@ function Gasses() {
   const [gas4, setGas4] = React.useState("NMOC");
   const { gassesData, setGassesData } = React.useContext(AppContext);
 
-
   const handleChange = (event) => {
     setGassesData({
       ...event,
@@ -36,8 +35,6 @@ function Gasses() {
   useEffect(() => {
     handleChange();
   }, [gas1, gas2, gas3, gas4]);
-
-  
 
   const handleGas1Change = (event) => {
     setGas1(event.target.value);

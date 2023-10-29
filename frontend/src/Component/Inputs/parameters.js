@@ -2,13 +2,9 @@ import React, { useEffect } from "react";
 import { MethaneGenRateOptions, PotentialMethaneGenCapacityOptions, NMOCConcentrationOptions, MethaneContentOptions } from "./data/parameterData";
 import { AppContext } from "../../AppContext";
 
-
 //Material UI
 import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
 function Parameters() {
-
-
-
     const [methaneGenerationRate, setMethaneGenerationRate] = React.useState("CAA Conventional - 0.05");
     const [potentialMethaneGenerationCapacity, setPotentialMethaneGenerationCapacity] = React.useState("CAA Conventional - 170");
     const [nmocConcentration, setNmocConcentration] = React.useState("CAA - 4,000");
@@ -29,8 +25,6 @@ function Parameters() {
         handleChange();
     }, [methaneGenerationRate, potentialMethaneGenerationCapacity, nmocConcentration, methaneContent]);
 
-
-
     const handleMethaneGenerationRateChange = (event) => {
         setMethaneGenerationRate(event.target.value);
         setParametersData({
@@ -47,7 +41,6 @@ function Parameters() {
             potentialMethaneGenerationCapacity: event.target.value,
         });
         handleChange(event);
-
     };
 
     const handleNmocConcentrationChange = (event) => {
@@ -56,9 +49,7 @@ function Parameters() {
             ...parametersData,
             nmocConcentration: event.target.value,
         });
-
         handleChange(event);
-
     };
 
     const handleMethaneContentChange = (event) => {
@@ -68,12 +59,7 @@ function Parameters() {
             methaneContent: event.target.value,
         });
         handleChange(event);
-
     };
-
-    
-    
-
   return <div>
     <FormControl fullWidth>
     <InputLabel>Methane Generation Rate, k(year^-1)</InputLabel>
@@ -87,9 +73,6 @@ function Parameters() {
                 {option.name}
             </MenuItem>
         ))}
-
-
-
     </Select>
     </FormControl>
     <br/>
@@ -124,7 +107,6 @@ function Parameters() {
                 {option.name}
             </MenuItem>
         ))}
-
     </Select>
     </FormControl>
     <br/>

@@ -72,9 +72,21 @@ function AcceptanceRates() {
     setUnitType2(selectedValue === 1 ? "Mg/year": "short tons/year");
     for(let i = 0; i < generatedRows.length; i++)
     {
-      generatedRows[i].calculatedUnits = generatedRows[i].inputUnits * (selectedValue === 0 ? 1 : 1.10231);
-    }
-  };
+      if (selectedValue === 0)
+      {
+        generatedRows[i].calculatedUnits = generatedRows[i].inputUnits * 100000 * 0.022 / 2000 
+        console.log(generatedRows[i].calculatedUnits);
+        console.log(generatedRows[i].inputUnits);
+        console.log("i" + i)
+      }
+      else
+      {
+        generatedRows[i].calculatedUnits = generatedRows[i].inputUnits * 2000 / (100000 * 0.022);
+        console.log(generatedRows[i].calculatedUnits);
+        console.log(generatedRows[i].inputUnits);
+        console.log("i" + i)
+      }
+    }  };
 
   //Just for displaying on input page
   const columns = [
@@ -115,10 +127,18 @@ function AcceptanceRates() {
   //   setGeneratedRows(newRows);
   // };
 
+  //changes calcuated units with input units
   const onEditComplete = useCallback(({ value, columnId, rowId }) => {
     const data = [...generatedRows];
     data[rowId][columnId] = value;
-    data[rowId].calculatedUnits = value * 5;
+    if(unitType === "Mg/year")
+    {
+      data[rowId].calculatedUnits = value * 100000 * 0.022 / 2000 
+    }
+    else
+    {
+      data[rowId].calculatedUnits = value * 2000 / (100000 * 0.022)
+    }
     setGeneratedRows(data);
   }, [generatedRows])
 

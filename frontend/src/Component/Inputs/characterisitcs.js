@@ -66,7 +66,6 @@ function Characterisitics() {
     }));
   }, [open, close, calculateClosureBool, wasteCapacity]);
   
-    
   return (
     <div>
       <TextField
