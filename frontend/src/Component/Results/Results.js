@@ -166,16 +166,25 @@ function Results() {
   //console.log(outputData);
   //Convert datarows to array
   const dataRowsArray = Object.values(dataRows);
+  console.log(dataRowsArray)
+  const processedArray = dataRowsArray.map(dataRow => {
+    // Access properties of each data row and process them, returning a new object
+    return {
+      id: dataRow.id,
+      year: dataRow.year,
+      inputUnits: dataRow.inputUnits,
+      calculatedUnits: dataRow.calculatedUnits
+    };
+  });
+
   useEffect(() => {
     const GridData = [];
     for (let i = 0; i < dataRowsArray.length; i++) {
       GridData.push({
         id: i,
         Year: parseInt(openYear, 10) + parseInt(i, 10),
-        unitType: 0,
-        unitType2: 0,
-        WasteAccepted1: 0,
-        WasteAccepted2: 0,
+        WasteAccepted1: dataRowsArray[i].inputUnits,
+        WasteAccepted2: dataRowsArray[i].calculatedUnits,
         WasteInPlace1: 0,
         WasteInPlace2: 0,
         Mgyr1: 0,
@@ -192,6 +201,7 @@ function Results() {
         Pickaunit4: 0,
 
       });
+      console.log(dataRowsArray[i].inputUnits)
     }
     SetGridRows(GridData);
   }, []
